@@ -84,4 +84,4 @@ var whoAmIAgain = customeMessage(12);
 
 <!-- Put your image here -->
 
-![](./img/image-name.jpg)
+![9-c](../code/img/9c.png)

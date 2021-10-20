@@ -10,6 +10,10 @@ function percentage(marks, total) {
 let percent = function percentage(marks,total){
   return (marks * 100) / total;
 }
+// Anonymous Function expression
+let percent = function (marks,total){
+  return (marks * 100) / total;
+}
 // Arrow Function
 let percent = (marks,total) => {
   return (marks * 100) / total;
@@ -61,9 +65,27 @@ let percentage = function (marks, total) {
   return (marks * 100) / total;
 };
 ```
+BECAUSE FUNCTION IS AN OBJECT AND AN OBJECT IS A VALUE, SO A FUNCTION DEFINITION I.E THE FUNCTION WHOLE IS A FUNCTION EXPRESSION SINCE ITS ALSO A VALUE. 
 
 4. Why is a function call an expression in JavaScript?
 A function expression is when we store the function in a variable and when we call this variable it return a value. Since an expression is anything that returns a value, so we can say that a function call is an expression in JS.  
+
+A FUNCTION RETURNS A VALUE IF A RETURN STATEMENT IS THERE IN IT. IF NOT THEN THE FUNCTION WILL RETURN 'UNDEFINED' AND SINCE UNDEFINED IS ALSO A VALUE IN JS , THEREFORE A FUNCTION CALL IS SAME AS AN EXPRESSION.
+EG:
+```js
+function add(a,b){
+  return a+b;
+}
+function addAgain(a,b){
+
+}
+
+add(10,12) //22
+addAgain(); //undefined
+// But since undefined and 22 both a re values in JS, therefore call and expression are the same.
+
+// *** function call always returns a value either 22,... or undefined. So its same as an expression as expression also returns a value
+```
 
 5. Write VALID and INVALID next to each example below with the reason.
 
@@ -98,6 +120,10 @@ let percentage = (marks, total) => {
 percentage(60,100);
 ```
 
+//function definition is an expression (since function is an object in JS)
+//function call is an expression as well (since function call always returns a value)
+
+
 8. Is the code below valid or invalid. Explain with reason.
 
 ```js
@@ -114,13 +140,17 @@ A higher order function is:
 OR
 (b) When a function returns another function, then the prior function will be called a Higher Order Function.
 
+Simply put HOF is a function:
+- That accepts a function definition
+- That returns a fuunction definition
+
 Example:
 ```js
 function isOdd(num){
   return num%2!==0;
 }
-function filterOdd(arr,fn){
-    console.log(fn(10))
+function filterOdd(arr,cb){ // HOF
+    console.log(cb(10))
     return arr;
 }
 filterOdd([1,2,4,6,8],isOdd) // OUTPUT is false...because in the HOF filterOdd we have passed 10 which gets passed to the isOdd Function and since 10 is not an odd number it returns false. 
@@ -138,5 +168,5 @@ function filterOdd(arr){
 When you pass a function reference as argument during a function call then its called a call back function. i.e from where the function's call started.
 eg:
 ```js
-filterOdd([1,3,5,6],isOdd) //Here filterOdd is a callback function and isOdd function is passed a its argument.
+filterOdd([1,3,5,6],isOdd) //Here isOdd is passed to filterOdd function, so isOdd is a call back function
 ``` 

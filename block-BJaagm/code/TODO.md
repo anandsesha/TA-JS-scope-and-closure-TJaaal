@@ -1,8 +1,8 @@
 1. What does thread of execution means in JavaScript?
-Thread of execution is the steps a program takes to get executed i.e the procedure in which a program gets executed.
+Thread of execution is the steps a program takes to get executed i.e the procedure in which a program gets executed. Line by line.
 
 2. Where the JavaScript code gets executed?
-The JS code gets executed in the Global Execution Context (GEC).
+The JS code gets executed in the JavaScript Engine....inside the Global Execution Context (GEC).
 
 3. What does context means in Global Execution Context?
 Context is the place where you execute your code.
@@ -20,7 +20,7 @@ b. Function Execution Context
 
 7. When global and function execution context gets created?
 GEC gets created when a program is executed. Only once per program when JS engine runs your code.
-FEC gets executed when a function is created.
+FEC gets executed when a function is executed(i.e called).
 
 8. Function execution gets created during function execution or while declaring a function.
 FEX gets created while executing your function.

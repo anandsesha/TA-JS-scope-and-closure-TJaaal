@@ -12,14 +12,14 @@ function change() {
   console.log(species);
 }
 
-console.log(species); // 1
+console.log(`One....${species}`); // 1
 change();
-console.log(species); // 2
+console.log(`Two....${species}`); // 2
 ```
 
 <!-- Put your image below -->
 
-![](./img/image-name.jpg)
+![Pic-1](./img/scope-1.jpeg)
 
 - Create the execution context diagram
 - What will be the value of species on 1 and 2
@@ -47,7 +47,7 @@ topLevelFn();
 
 <!-- Put your image below -->
 
-![](./img/image-name.jpg)
+![Pic-2](./img/scope-2.jpeg)
 
 - Create the execution context diagram
 - What will be the value of 1 and 2
@@ -73,12 +73,12 @@ function main() {
 }
 
 main();
-console.log(one, two, three, four); // 5
+console.log(one, two, three, four); // Error Four is not defined
 ```
 
 <!-- Put your image below -->
 
-![](./img/image-name.jpg)
+![Pic-3](./img/scope-3.jpeg)
 
 - Create the execution context diagram
 - What will be the value of 1, 2, 3, 4 and 5 or error if the code does not work

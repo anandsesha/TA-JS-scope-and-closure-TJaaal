@@ -1,7 +1,8 @@
 Find the output of the code snippets below:
 
 ```js
-console.log(numA + numB); //NAN undefined
+console.log(numA + numB); 
+//undefined + undefined => NaN
 var numA = 21,
   numB = 30;
 
@@ -38,7 +39,7 @@ function sayHello() {
   console.log("Hello");
 }
 
-// 
+// Whatever function will come last will be executed!!!(in case of same name of a function).
 ```
 
 Find the output of the code snippets below:

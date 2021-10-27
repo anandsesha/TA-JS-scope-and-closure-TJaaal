@@ -10,14 +10,14 @@ function multiplyArrayByN(arr, cb) { // Higher Order function
   }
   return finalArr;
 }
-function addFive(n) {
+function addFive(n) { // cb function
   return n + 5;
 }
-function multiplyBy5(n) {
+function multiplyBy5(n) { // cb function
   return n * 5;
 }
-let numbersAddedFive = multiplyArrayByN(marks, addFive); // cb function
-let numbersMultipliedBy5 = multiplyArrayByN(marks, multiplyBy5); // cb function
+let numbersAddedFive = multiplyArrayByN(marks, addFive); // function reference
+let numbersMultipliedBy5 = multiplyArrayByN(marks, multiplyBy5); // function reference
 ```
 
 2. Create the execution context diagram of the above code snippet

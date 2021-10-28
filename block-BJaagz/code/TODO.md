@@ -8,7 +8,7 @@
 function forEach(arr,cb) {
   arr.reduce((acc,cv,i,arr)=> {
     cb(cv,i,arr);
-  },[])
+  })
 }
 
 forEach(['Sam', 'Jon', 'Arya'], (name, i, arr) =>

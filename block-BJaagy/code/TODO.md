@@ -13,13 +13,14 @@ hof(add);
 
 2. Create a function by you choice that returns a function reference.
 ```js
-function hof(cb){
-  return cb;
+function hof(){ // Another type of HOF
+  function add(a,b){
+    return a+b;
+  };
+  return add;
 }
-function add(a,b){
-  return a+b;
-}
-hof(add)
+
+hof()
 ```
 
 3. Create a higher order function called `map` that takes two inputs:
@@ -76,7 +77,8 @@ console.log(alphabet); //prints 'abcd'
 function filter(arr,cb){
   let newArray = [];
   for(let elm of arr){
-    if(cb(elm)==true){
+    if(cb(elm)==true){ 
+      // or we can say if(cb(elm)){...} this returns truthy values only.
       newArray.push(elm)
     }
   }

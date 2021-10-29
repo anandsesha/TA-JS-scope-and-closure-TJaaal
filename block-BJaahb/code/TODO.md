@@ -12,7 +12,7 @@ function outer() {
 let getSum = outer();
 let num = getSum();
 ```
-![Pic-1]()
+![Pic-1](./img/Q1.jpeg)
 
 2.
 

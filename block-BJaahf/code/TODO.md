@@ -12,10 +12,8 @@
 ```js
 function loop(start,testFn,updateFn,bodyFn) {
   // Your code goes here
-  for(i=start;testFn(i);updateFn(i)){
-    if(testFn()==true){
-      bodyFn(i);
-    }
+  for(i=start;testFn(i);i = updateFn(i)){
+    bodyFn(i);
   }
 }
 
@@ -41,7 +39,7 @@ function reduce(array, callback, initialValue) {
   //   return acc;
   // },initialValue)
 
-  acc = initialValue;
+  let acc = initialValue;
   for(i=0;i<array.length;i++){
     acc = callback(acc,array[i]);
   }
@@ -59,12 +57,16 @@ reduce(nums, add, 0); //-> 8
 3. Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs.
 
 ```js
-function intersection(arrays) {
-  // for(i=0;i<array.length;i++){
+function intersection(...arrays) {
+  // We got first Array from the aray of arrays which is ...arrays -> [array,array,array]
+  let firstArray = arrays[0];
+  for(let i = 0;i<arrays.length; i++){
+    let secondArray = arrays[1];
 
-  // }
-  // if(arrays[]){}
-  
+    // Now we have to check if the element in first array is present in second array. If so, reassign the value of the first array with the filtered values. i.e only common values from 1 and 2 array are stored in the first array now
+    firstArray = firstArray.filter(elm => secondArray.includes(elm))
+  }
+  return firstArray;
 }
 
 // Test
@@ -80,8 +82,14 @@ console.log(
 4. Construct a function `union` that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array.
 
 ```js
-function union(arrays) {
-  
+// using rest operator (...arrays) we get all arrays passed while calling into one single array called arrays.
+function union(...arrays) {
+  let firstArray = arrays[0];
+  for(i=0;i<arrays.length;i++){
+    let secondArray = arrays[1];
+    firstArray = firstArray.filter(elm => !secondArray.includes(elm)).concat(secondArray);
+  }
+  return firstArray;
 }
 
 // Test

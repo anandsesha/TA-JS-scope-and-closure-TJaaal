@@ -8,33 +8,42 @@ function outer(str){
   let sayHello = () => {
     alert(str)
   }
-  return sayHello();
+  sayHello();
 }
 outer("Hi")
 ```
 
-2. Write a function `delay` that accepts two arguments, a callback and the wait for the time in milliseconds (1000 ms is 1 second). `delay` should return a function that, when invoked waits for the specified amount of time before executing. (Use setTimeout)
+2. Write a function `delay` that accepts two arguments, a callback and the wait for the time in milliseconds (1000 ms is 1 second). `delay` should return a function that, when invoked waits for the specified amount of time before executing the callback. (Use setTimeout)
 
 ```js
 // Your code goes here
 function delay(cb,time){
-  return setTimeout(cb,1000);
+  return function (){
+    setTimeout(cb,time);
+  }
 }
-let sample = () => {
-  alert("Hi")
+function hi(){
+  console.log(`Hiiii`);
 }
-delay(sample,1000)
+let sample = delay(hi,2000)
+sample();
 
 let lastNameLee = lastName('lee'); // logs nothing
 lastNameLee('Brett'); //logs 'Brett Lee'
 ```
 
+```js
+function lastNameLee(ln) {
+  return function(fn){
+    console.log(`${fn} ${ln}`);
+  }
+}
+let lastNameLee = lastName('Lee')
+```
+
 This function is useful in case you want to create name for multiple people with same last name.
 
 ```js
-function lastNameLee(firstName) {
-  return firstName.concat(' ','Lee');
-}  
 lastNameLee('Jane'); //logs 'Jane Lee'
 lastNameLee('Lynne'); //logs 'Lynne Lee'
 ```
@@ -119,10 +128,10 @@ manager('Head'); // Head Manager
 function changeSalary(currentSalary=0) {
   // Your code goes here
   return {
-    raise: function (){
+    raise: function (){ // One way of writing function inside an Object
       return currentSalary+500;
     },
-    lower: function (){
+    lower(){ // Another way of writing function inside an Object
       return currentSalary-500;
     },
     current: function (){
@@ -152,9 +161,11 @@ function nameFactory(fname,lname){
       return fname.concat(" ",lname);
     },
     setFirstName: function (firstName){
-      return firstName.concat(" ",lname);
+      fname = firstName;
+      return fname.concat(" ",lname);
     },
     setLastName: function (lastName){
+      lname = lastName;
       return fname.concat(" ",lname);
     },
   };
@@ -171,10 +182,16 @@ arya.setLastName('Lannister'); // "Jon Lannister"
 The returned function accepts a string (children) and returns the children with the tag you passed.
 
 ```js
-function createTag(elm) {
+function createTag(tag) {
   // your code goes here
   return function (children){
-    return `<${elm}>${children}</${elm}>`
+    // This below is one way
+    // return `<${elm}>${children}</${elm}>`
+
+    // This below is another way
+    let elm = document.createElement(tag);
+    elm.innerText = children;
+    return elm;
   }
 }
 

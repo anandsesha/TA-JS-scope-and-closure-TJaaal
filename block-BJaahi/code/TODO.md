@@ -275,7 +275,7 @@ let sayHi = function sayHi(name) {
 let sayHi; // not defined
 
 // Execution
-sayHi();
+sayHi(); // ERROR sayHi is not defined. bec of let.
 
 // Declaration function
 var name;

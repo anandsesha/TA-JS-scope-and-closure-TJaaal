@@ -10,9 +10,9 @@ const lastName = 'Stark';
 var knownAs = 'no one';
 
 console.log(
-  window.firstName,
-  window.lastName,
-  window.knownAs
+  window.firstName, // undefined
+  window.lastName, // undefined
+  window.knownAs // 'no one'
 );
 ```
 
@@ -27,7 +27,8 @@ function fullName(a, b) {
   return a + b;
 }
 
-console.log(window.fullName(firstName, lastName));
+console.log(window.fullName(firstName, lastName)); // AryaStark
+// Since inside function's block scope let and const and var can all be accessed. 
 ```
 
 3. Make a Execution Context Diagram for the following JS and write the output.
@@ -38,9 +39,11 @@ fucntion addOne(num){
 }
 var one = addOne(0);
 var two = addOne(1);
-console.log(one, two);
+console.log(one, two); // 1 2
+![Pic-3](./img/Pic-3.jpeg)
 ```
 
+<!-- Pic 4 5 6 7 together ahead -->
 4. Make a Execution Context Diagram for the following JS and write the output.
 
 ```js
@@ -49,41 +52,42 @@ fucntion addOne(num){
   return num + 1;
 }
 var two = addOne(1);
-console.log(one, two);
+console.log(one, two); // 1 2
 ```
 
 5. Make a Execution Context Diagram for the following JS and write the output.
 
 ```js
-console.log(addOne(0));
+console.log(addOne(0)); // 1
 fucntion addOne(num){
   return num + 1;
 }
 var two = addOne(1);
-console.log(two);
+console.log(two); // 2
 ```
 
 6. Make a Execution Context Diagram for the following JS and write the output.
 
 ```js
-var one = addOne(0);
+var one = addOne(0); // Uncaught ReferenceError: Cannot access 'addOne' before initialization
 const addOne = (num) => {
   return num + 1;
+console.log(two);
 };
 var two = addOne(1);
-console.log(two);
 ```
 
 7. Make a Execution Context Diagram for the following JS and write the output.
 
 ```js
-console.log(addOne(0));
+console.log(addOne(0)); //Uncaught ReferenceError: Cannot access 'addOne' before initialization. Defined using const so its empty during declaration phase.
 const addOne = (num) => {
   return num + 1;
 };
 var two = addOne(1);
 console.log(two);
 ```
+![Pic-4567](./img/Pic-4567.jpeg)
 
 8. What will be the output of the following
 
@@ -93,9 +97,9 @@ function isAwesome() {
   if (false) {
     awesome = true;
   }
-  console.log(awesome);
+  console.log(awesome); //undefined
 }
-isAwesome();
+isAwesome(); // undefined
 ```
 
 9. What will be the output of the following
@@ -106,9 +110,9 @@ function isAwesome() {
   if (true) {
     awesome = true;
   }
-  console.log(awesome);
+  console.log(awesome); //true
 }
-isAwesome();
+isAwesome(); //undefined
 ```
 
 10. What will be the output of the following
@@ -119,9 +123,9 @@ function isAwesome() {
   if (false) {
     awesome = true;
   }
-  console.log(awesome);
+  console.log(awesome); //undefined
 }
-isAwesome();
+isAwesome();//undefined
 ```
 
 11. What will be the output of the following
@@ -134,8 +138,8 @@ var knownAs = 'no one';
 function fullName(a, b) {
   return a + b;
 }
-const name = fullName(firstName, lastName);
-console.log(name);
+const name = fullName(firstName, lastName); //undefined
+console.log(name); // Arya Stark
 ```
 
 12. Guess the output of the code below with a reason.
@@ -144,9 +148,9 @@ console.log(name);
 function sayHello() {
   let name = 'Arya Stark';
 }
-sayHello();
+sayHello(); //undefined
 
-console.log(name);
+console.log(name); //undefined
 ```
 
 13. Guess the output of the code below with a reason.
@@ -155,7 +159,8 @@ console.log(name);
 if (true) {
   var name = 'Arya Stark';
 }
-console.log(name);
+console.log(name); // "Arya Stark"
+// Because var is not block scoped hence can be accessed from outside.
 ```
 
 14. Guess the output of the code below with a reason.
@@ -164,7 +169,8 @@ console.log(name);
 if (true) {
   let name = 'Arya Stark';
 }
-console.log(name);
+console.log(name); //"Arya Stark"
+// name is on GEC memory and can be fetched by console.log()'s FEC.
 ```
 
 15. Guess the output of the code below with a reason.
@@ -173,7 +179,8 @@ console.log(name);
 for (var i = 0; i < 20; i++) {
   //
 }
-console.log(i);
+console.log(i); // 20
+// i can be accessed outside the loop bec of var keyword. loop runs 19 times and then outside its value will be 20.
 ```
 
 16. Guess the output of the code below with a reason.
@@ -182,7 +189,8 @@ console.log(i);
 for (let i = 0; i < 20; i++) {
   //
 }
-console.log(i);
+console.log(i); // ERROR i is not defined.
+// Here bec of let keyword i cannot be accessed outside the - for block scope.
 ```
 
 17. Guess the output and the reason behind that.
@@ -192,9 +200,9 @@ function sample() {
   if (true) {
     var username = 'John Snow';
   }
-  console.log(username);
+  console.log(username); // "John Snow"
 }
-sample();
+sample(); // undefined
 ```
 
 18. Guess the output and the reason behind that.
@@ -204,7 +212,7 @@ function sample() {
   if (true) {
     let username = 'John Snow';
   }
-  console.log(username);
+  console.log(username); // ERROR username is not defined. Because of let keyword which is block scoped.
 }
 sample();
 ```
@@ -216,9 +224,9 @@ function sample() {
   var username = 'Arya Stark';
   if (true) {
     var username = 'John Snow';
-    console.log(username);
+    console.log(username); // John Snow. Because of scope first immediate username will be accessed.
   }
-  console.log(username, 'second');
+  console.log(username, 'second'); // John Snow second
 }
 sample();
 ```
@@ -230,9 +238,9 @@ function sample() {
   let username = 'Arya Stark';
   if (true) {
     let username = 'John Snow';
-    console.log(username, 'first');
+    console.log(username, 'first'); // John Snow first
   }
-  console.log(username, 'second');
+  console.log(username, 'second'); // Arya Stark second
 }
 sample();
 ```
@@ -248,6 +256,9 @@ function sample(...args) {
 }
 
 sample('First', 'Second', 'Third');
+// Hello I am first
+// Hello I am Second
+// Hello I am Third
 ```
 
 22. Guess the output and the reason behind that.
@@ -261,6 +272,9 @@ function sample(...args) {
 }
 
 sample('First', 'Second', 'Third');
+// Hello I am first
+// Hello I am Second
+// Hello I am Third
 ```
 
 23. Guess the output and the reason behind that.
@@ -268,10 +282,10 @@ sample('First', 'Second', 'Third');
 ```js
 if (true) {
   const myFunc = function () {
-    console.log(username, 'Second');
+    console.log(username, 'Second'); 
   };
-  console.log(username, 'First');
-  let username = 'Hello World!';
+  console.log(username, 'First'); // Uncaught ReferenceError: Cannot access 'username' before initialization
+  let username = 'Hello World!'; // initialization is done only later
   myFunc();
 }
 ```
@@ -283,7 +297,7 @@ function outer() {
   let movie = 'Mad Max: Fury Road';
   function inner() {
     console.log(
-      `I love this movie called ${movie.toUpperCase()}`
+      `I love this movie called ${movie.toUpperCase()}` // I love this movie called MAD MAX: FURY ROAD
     );
   }
   inner();
@@ -300,13 +314,14 @@ function outer() {
   function inner() {
     let movie = 'Before Sunrise';
     console.log(
-      `I love this movie called ${movie.toUpperCase()}`
+      `I love this movie called ${movie.toUpperCase()}` // I love this movie called BEFORE SUNRISE
     );
   }
   inner();
 }
 
 outer();
+// As per scope the first inner ring is travelled then goes outside.
 ```
 
 26. Guess the output and the reason behind that.
@@ -319,7 +334,7 @@ function outer() {
     function extraInner() {
       let movie = 'Gone Girl';
       console.log(
-        `I love this movie called ${movie.toUpperCase()}`
+        `I love this movie called ${movie.toUpperCase()}` // I love this movie called GONE GIRL
       );
     }
     extraInner();
@@ -327,6 +342,7 @@ function outer() {
   inner();
 }
 outer();
+// As per scope the first inner ring is travelled then goes outside.
 ```
 
 30. Using reduce find the final value when the initial value passed is `100`. You have to pass the output of one function into the input of next function in the array `allFunctions` starts with `addOne` ends with `half`.
@@ -354,5 +370,9 @@ let allFunctions = [
   half,
 ];
 
+allFunctions.reduce((acc,cv) => {
+  acc = cv(100);
+  return acc;
+},100)
 // Answer is: 447
 ```

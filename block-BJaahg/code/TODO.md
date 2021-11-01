@@ -119,7 +119,7 @@ isAwesome(); //undefined
 
 ```js
 function isAwesome() {
-  let awesome;
+  let awesome; // empty
   if (false) {
     awesome = true;
   }
@@ -169,8 +169,8 @@ console.log(name); // "Arya Stark"
 if (true) {
   let name = 'Arya Stark';
 }
-console.log(name); //"Arya Stark"
-// name is on GEC memory and can be fetched by console.log()'s FEC.
+console.log(name); // name is not defined
+// name variable is block scopped inside if block and cant be accessed outside the block.
 ```
 
 15. Guess the output of the code below with a reason.
@@ -371,8 +371,7 @@ let allFunctions = [
 ];
 
 allFunctions.reduce((acc,cv) => {
-  acc = cv(100);
-  return acc;
+  return cv(acc); // cv is each function , so say addOne(100) => 101, and subTwo(101) => 99, and multiplyThree(99) => 297, and addOne => 298, and multiplyThree(298) => 894, and half(894) => 447
 },100)
 // Answer is: 447
 ```

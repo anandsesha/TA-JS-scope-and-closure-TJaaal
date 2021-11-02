@@ -15,6 +15,17 @@ function objOfMatches(array1, array2, callback) {
   return finalObj;
 }
 
+// With Reduce
+function objOfMatches(array1, array2, callback) {
+  return array1.reduce((acc,cv,index) => {
+    if(callback(cv) === array2[index]){
+      acc[cv] = array2[index];
+    }
+    return acc;
+  },{});
+}
+
+
 // TEST
 console.log(
   objOfMatches(
@@ -49,6 +60,15 @@ console.log(valueArray)
 }
 // { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
  
+// With Reduce
+function multiMap(arrVals, arrCallbacks) {
+  return arrVals.reduce((acc,cv,index) => {
+    let valuesArray = arrCallbacks.map(fn => fn(cv))
+    acc[cv] = valuesArray;
+    return acc;
+  },{});
+}
+
 
 
 
@@ -80,13 +100,17 @@ To build the object, `objOfMatchesWithArray` will test each element of the first
 The final output from the third array will be matched against the same indexed element of second array. If there is a match, the element from the first array becomes a key in an object, and the element from the second array becomes the corresponding value.
 
 ```js
-// ??????
+// With Reduce
 function objOfMatchesWithArray(array1, array2, callback) {
-  for(let i=0; i<array1.length; i++){
-    for(let j=0; j<array1.length; j++){
-      
+  return array1.reduce((acc,cv,index) => {
+    let val = callback.reduce((acc,fn) => fn(acc),cv) //Here acc is 'hi' in case of first loop
+    
+
+    if(val === array2[index]){
+      acc[cv] = array2[index];
     }
-  }
+    return acc;
+  },{})
 }
 
 // TEST
@@ -129,6 +153,15 @@ function objOfMatchesWithArray(array1,array2) {
     finalObj[array1[i]] = resultArray; 
   }
   return finalObj;
+}
+
+// With Reduce
+function objOfMatchesWithArray(array1,array2) {
+  return array1.reduce((acc,cv,index) => {
+    let valuesArray = array2.map(fn => fn(cv))
+    acc[cv] = valuesArray;
+    return acc;
+  },{})
 }
 
 // TEST

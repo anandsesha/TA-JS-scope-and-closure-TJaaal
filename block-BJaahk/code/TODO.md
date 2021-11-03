@@ -9,9 +9,8 @@ function censor(fromWord, toWord) {
   //  Your code goes here
   return function(sentence){
     if(sentence.includes(fromWord)){
-      sentence = sentence.replace(fromWord,toWord)
+      return sentence.replace(fromWord,toWord)
     }
-    return sentence;
   }
 }
 
@@ -30,14 +29,32 @@ The returned function either accepts two parameter or one parameter.
 - When you pass one parameter it should return a string with words replaced with the required words.
 
 ```js
-function multipleCensor() {
-  //  Your code goes here
-  let sampleArray = []
-  return function(a,b=""){
-    if(b !== ""){
-      sampleArray.push(a,b)
-    }else if(b == ""){
-      return a;
+// function multipleCensor() {
+//   //  Your code goes here
+//   let sampleArray = []
+//   return function(a,b=""){
+//     if(b !== ""){
+//       sampleArray = sampleArray.push(a,b)
+//     }else if(b == ""){
+//       return a;
+//     }
+//   }
+// }
+
+function multipleCensor(){
+  let words = []
+  return function(...params){
+    
+    if(params.length === 1){
+      let quotes = params[0]
+      words.forEach(pair => {
+        quotes.replace(pair[0],pair[1])
+      });
+      return quotes;
+    }else if(params.length === 2){
+      words.push(params)
+    }else{
+      alert(`Number of parameters has to be two or less boss!`)
     }
   }
 }
@@ -96,13 +113,17 @@ function createCache(cb,psswd) {
   let finalObj = {}
   // Your code goes here
   return function(param){
+    
     if(param !== psswd){
       if(finalObj[param]){
-        return finalObj[param].value  
+        console.log(`Param is already present`)
+        return finalObj[param]
+      }else{
+        finalObj[param] = cb(param);
+        return cb(param);
       }
-      finalObj[param] = cb(param);
-      return cb(param);
-    }else{
+    }
+    else{
       return finalObj;
     }
   }
